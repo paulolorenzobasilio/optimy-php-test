@@ -10,7 +10,7 @@ class DB
 	{
 		$dsn = 'mysql:dbname=phptest;host=127.0.0.1';
 		$user = 'root';
-		$password = 'pass';
+		$password = 'root';
 
 		$this->pdo = new \PDO($dsn, $user, $password);
 	}
