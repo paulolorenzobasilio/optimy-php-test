@@ -1,0 +1,11 @@
+{
+    "name": "itcentral/optimy_php_test",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    }
+}
