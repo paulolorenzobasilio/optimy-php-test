@@ -4,6 +4,7 @@ namespace App\Class;
 
 use Cycle\Annotated\Annotation\Entity;
 use Cycle\Annotated\Annotation\Column;
+use Cycle\Annotated\Annotation\Relation\HasMany;
 
 #[Entity]
 class News
@@ -16,6 +17,8 @@ class News
     private string $body;
     #[Column(type: 'datetime')]
     private \DateTimeImmutable $createdAt;
+    #[HasMany(target: Comment::class)]
+    private ?array $comments;
 
     public function setId($id)
     {
@@ -63,5 +66,10 @@ class News
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    public function getComments(): ?array
+    {
+        return $this->comments;
     }
 }

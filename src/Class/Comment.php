@@ -15,8 +15,8 @@ class Comment
     private string $body;
     #[Column(type: 'datetime')]
     private \DateTimeImmutable $createdAt;
-    #[Column(type: "string")]
-    private string $newsId;
+    #[Column(type: 'int')]
+    private int $newsId;
 
     public function setId($id)
     {
