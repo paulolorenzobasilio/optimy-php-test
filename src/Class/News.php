@@ -27,7 +27,8 @@ class News
 
     public function setTitle($title)
     {
-        $this->title = $title;}
+        $this->title = $title;
+    }
 
     public function getTitle()
     {

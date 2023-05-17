@@ -8,8 +8,8 @@ use Cycle\ORM\ORMInterface;
 
 class NewsManager
 {
-    public function __construct(private CommentManager $commentManager,
-                                private ORMInterface $orm,
+    public function __construct(private CommentManager         $commentManager,
+                                private ORMInterface           $orm,
                                 private EntityManagerInterface $em)
     {
     }
