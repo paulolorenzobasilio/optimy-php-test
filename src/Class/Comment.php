@@ -5,7 +5,7 @@ namespace App\Class;
 use Cycle\Annotated\Annotation\Entity;
 use Cycle\Annotated\Annotation\Column;
 
-#[Entity]
+#[Entity(table: 'comment')]
 class Comment
 {
 

@@ -3,40 +3,39 @@
 namespace App\Utils;
 
 use App\Class\Comment;
+use App\Class\News;
+use Cycle\ORM\EntityManagerInterface;
+use Cycle\ORM\ORM;
+use Cycle\ORM\ORMInterface;
 
 class CommentManager
 {
-    private Comment $comment;
-    public function __construct(private DB $db)
+    public function __construct(private ORMInterface $orm, private EntityManagerInterface $em)
     {
     }
 
     public function listComments()
     {
-        $rows = $this->db->select('SELECT * FROM `comment`');
-
-        $comments = [];
-        foreach ($rows as $row) {
-            $n = new Comment();
-            $comments[] = $n->setId($row['id'])
-                ->setBody($row['body'])
-                ->setCreatedAt(new \DateTimeImmutable($row['created_at']))
-                ->setNewsId($row['news_id']);
-        }
-
-        return $comments;
+        return $this->orm->getRepository(Comment::class)->findAll();
     }
 
-    public function addCommentForNews($body, $newsId)
+    public function addCommentForNews(string $body, int $newsId): Comment
     {
-        $sql = "INSERT INTO `comment` (`body`, `created_at`, `news_id`) VALUES('" . $body . "','" . date('Y-m-d') . "','" . $newsId . "')";
-        $this->db->exec($sql);
-        return $this->db->lastInsertId($sql);
+        $comment = new Comment();
+        $comment->setNewsId($newsId);
+        $comment->setBody($body);
+        $comment->setCreatedAt(new \DateTimeImmutable());
+
+        $this->em->persist($comment);
+        $this->em->run();
+
+        return $comment;
     }
 
-    public function deleteComment($id)
+    public function deleteComment(int $id): void
     {
-        $sql = "DELETE FROM `comment` WHERE `id`=" . $id;
-        return $this->db->exec($sql);
+        $comment = $this->orm->getRepository(Comment::class)->findByPK($id);
+        $this->em->delete($comment);
+        $this->em->run();
     }
 }
