@@ -5,24 +5,13 @@ class DB
 {
     private $pdo;
 
-    private static $instance = null;
-
-    private function __construct()
+    public function __construct()
     {
         $dsn = 'mysql:dbname=phptest;host=127.0.0.1';
         $user = 'root';
         $password = 'root';
 
         $this->pdo = new \PDO($dsn, $user, $password);
-    }
-
-    public static function getInstance()
-    {
-        if (null === self::$instance) {
-            $c = __CLASS__;
-            self::$instance = new $c;
-        }
-        return self::$instance;
     }
 
     public function select($sql)

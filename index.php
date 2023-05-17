@@ -5,8 +5,10 @@ require 'vendor/autoload.php';
 use App\Utils\NewsManager;
 use App\Utils\CommentManager;
 
-$newsManager = NewsManager::getInstance();
-$commentManager = CommentManager::getInstance();
+$container = new \DI\Container();
+
+$newsManager = $container->get(NewsManager::class);
+$commentManager = $container->get(CommentManager::class);
 
 foreach ($newsManager->listNews() as $news) {
 	echo("############ NEWS " . $news->getTitle() . " ############\n");

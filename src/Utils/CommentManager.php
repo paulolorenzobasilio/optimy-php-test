@@ -6,22 +6,9 @@ use App\Class\Comment;
 
 class CommentManager
 {
-    private static $instance = null;
-    private DB $db;
-
     private Comment $comment;
-    private function __construct()
+    public function __construct(private DB $db)
     {
-        $this->db = DB::getInstance();
-    }
-
-    public static function getInstance()
-    {
-        if (null === self::$instance) {
-            $c = __CLASS__;
-            self::$instance = new $c;
-        }
-        return self::$instance;
     }
 
     public function listComments()

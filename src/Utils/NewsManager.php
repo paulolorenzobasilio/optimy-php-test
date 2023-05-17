@@ -6,25 +6,10 @@ use App\Class\News;
 
 class NewsManager
 {
-    private static $instance = null;
-
-    private DB $db;
-    private CommentManager $commentManager;
     private News $news;
 
-    private function __construct()
+    public function __construct(private CommentManager $commentManager, private DB $db)
     {
-        $this->db = DB::getInstance();
-        $this->commentManager = CommentManager::getInstance();
-    }
-
-    public static function getInstance()
-    {
-        if (null === self::$instance) {
-            $c = __CLASS__;
-            self::$instance = new $c;
-        }
-        return self::$instance;
     }
 
     /**
