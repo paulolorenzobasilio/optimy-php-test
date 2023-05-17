@@ -1,7 +1,12 @@
 # PHP test
 
-## 1. Installation
+## Dependencies
+- PHP 8.0+
+- Composer
 
+## 1. Installation
+- `git clone https://github.com/paulolorenzobasilio/optimy-php-test.git`
+- install the dependencies `composer install`
 - create an empty database named "phptest" on your MySQL server
 - import the dbdump.sql in the "phptest" database
 - copy env file: ```cp .env.example .env```
