@@ -41,21 +41,8 @@ class NewsManager
     /**
      * deletes a news, and also linked comments
      */
-    public function deleteNews($id): void
+    public function deleteNews(int $id): void
     {
-        $comments = $this->commentManager->listComments();
-        $idsToDelete = [];
-
-        foreach ($comments as $comment) {
-            if ($comment->getNewsId() == $id) {
-                $idsToDelete[] = $comment->getId();
-            }
-        }
-
-        foreach ($idsToDelete as $id) {
-            $this->commentManager->deleteComment($id);
-        }
-
         $news = $this->orm->getRepository(News::class)->findByPK($id);
         $this->em->delete($news);
         $this->em->run();
