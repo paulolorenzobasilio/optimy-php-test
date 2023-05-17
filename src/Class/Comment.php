@@ -18,13 +18,6 @@ class Comment
     #[Column(type: 'int')]
     private int $newsId;
 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     public function getId()
     {
         return $this->id;
@@ -33,8 +26,6 @@ class Comment
     public function setBody($body)
     {
         $this->body = $body;
-
-        return $this;
     }
 
     public function getBody()
@@ -45,8 +36,6 @@ class Comment
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getCreatedAt()
@@ -62,7 +51,5 @@ class Comment
     public function setNewsId($newsId)
     {
         $this->newsId = $newsId;
-
-        return $this;
     }
 }
