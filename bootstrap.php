@@ -47,6 +47,9 @@ $orm = $orm->with(schema: new ORM\Schema($schema));
 $entityManager = new ORM\EntityManager($orm);
 
 $container = new DI\Container([
+    ORM\ORMInterface::class => DI\factory(function() use ($orm){
+       return $orm;
+    }),
     ORM\EntityManagerInterface::class => DI\factory(function () use ($entityManager){
         return $entityManager;
     })

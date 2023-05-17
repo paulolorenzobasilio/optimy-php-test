@@ -14,14 +14,9 @@ class Comment
     #[Column(type: "string")]
     private string $body;
     #[Column(type: 'datetime')]
-    private \DateTime $createdAt;
+    private \DateTimeImmutable $createdAt;
     #[Column(type: "string")]
     private string $newsId;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
 
     public function setId($id)
     {

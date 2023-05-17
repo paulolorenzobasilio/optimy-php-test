@@ -15,13 +15,7 @@ class News
     #[Column(type: 'string')]
     private string $body;
     #[Column(type: 'datetime')]
-    private \DateTime $createdAt;
-
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
+    private \DateTimeImmutable $createdAt;
 
     public function setId($id)
     {
