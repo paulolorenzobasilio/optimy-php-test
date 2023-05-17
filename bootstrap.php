@@ -6,6 +6,9 @@ use Cycle\Schema;
 use Cycle\Annotated;
 use Cycle\ORM;
 
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 $dbal = new Database\DatabaseManager(new Config\DatabaseConfig([
     'default' => 'default',
     'databases' => [
@@ -14,9 +17,9 @@ $dbal = new Database\DatabaseManager(new Config\DatabaseConfig([
     'connections' => [
         'mysql' => new Config\MySQLDriverConfig(
             connection: new Config\MySQL\DsnConnectionConfig(
-                dsn: 'mysql:dbname=phptest;host=127.0.0.1',
-                user: 'root',
-                password: 'root'
+                dsn: $_ENV['DB_HOST'],
+                user: $_ENV['DB_USER'],
+                password: $_ENV['DB_PASSWORD']
             ), queryCache: true
         )
     ]
