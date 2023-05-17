@@ -1,9 +1,27 @@
 <?php
 
 namespace App\Class;
+
+use Cycle\Annotated\Annotation\Entity;
+use Cycle\Annotated\Annotation\Column;
+
+#[Entity]
 class Comment
 {
-    protected $id, $body, $createdAt, $newsId;
+
+    #[Column(type: "primary")]
+    private int $id;
+    #[Column(type: "string")]
+    private string $body;
+    #[Column(type: 'datetime')]
+    private \DateTime $createdAt;
+    #[Column(type: "string")]
+    private string $newsId;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function setId($id)
     {

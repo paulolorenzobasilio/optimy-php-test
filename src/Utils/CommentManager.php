@@ -20,7 +20,7 @@ class CommentManager
             $n = new Comment();
             $comments[] = $n->setId($row['id'])
                 ->setBody($row['body'])
-                ->setCreatedAt($row['created_at'])
+                ->setCreatedAt(new \DateTime($row['created_at']))
                 ->setNewsId($row['news_id']);
         }
 

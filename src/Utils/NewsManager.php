@@ -25,7 +25,7 @@ class NewsManager
             $news[] = $n->setId($row['id'])
                 ->setTitle($row['title'])
                 ->setBody($row['body'])
-                ->setCreatedAt($row['created_at']);
+                ->setCreatedAt(new \DateTime($row['created_at']));
         }
 
         return $news;

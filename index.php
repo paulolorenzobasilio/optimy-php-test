@@ -2,13 +2,13 @@
 
 require 'vendor/autoload.php';
 
+$bootstrap = require 'bootstrap.php';
+
 use App\Utils\NewsManager;
 use App\Utils\CommentManager;
 
-$container = new \DI\Container();
-
-$newsManager = $container->get(NewsManager::class);
-$commentManager = $container->get(CommentManager::class);
+$newsManager = $bootstrap['container']->get(NewsManager::class);
+$commentManager = $bootstrap['container']->get(CommentManager::class);
 
 foreach ($newsManager->listNews() as $news) {
 	echo("############ NEWS " . $news->getTitle() . " ############\n");

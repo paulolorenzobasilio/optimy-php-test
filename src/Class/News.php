@@ -1,9 +1,27 @@
 <?php
 
 namespace App\Class;
+
+use Cycle\Annotated\Annotation\Entity;
+use Cycle\Annotated\Annotation\Column;
+
+#[Entity]
 class News
 {
-    protected $id, $title, $body, $createdAt;
+    #[Column(type: 'primary')]
+    private int $id;
+    #[Column(type: 'string')]
+    private string $title;
+    #[Column(type: 'string')]
+    private string $body;
+    #[Column(type: 'datetime')]
+    private \DateTime $createdAt;
+
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function setId($id)
     {
